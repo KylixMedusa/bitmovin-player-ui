@@ -57,7 +57,7 @@
     .#{$prefix}-ui-custom-playback-buttons {
       display: flex;
       align-items: center;
-      gap: 3em;
+      gap: 4em;
       .#{$prefix}-ui-playbacktogglebutton {
         width: 3em;
         height: 3em;
@@ -81,7 +81,7 @@
         position: relative;
 
         &::before {
-          content: "+10 sec";
+          content: "+10";
           position: absolute;
           width: max-content;
           color: #fff;
