@@ -1,5 +1,5 @@
-@import '../variables';
-@import '../mixins';
+@import "../variables";
+@import "../mixins";
 
 .#{$prefix}-ui-titlebar {
   @extend %ui-container;
@@ -7,13 +7,17 @@
   @include hidden-animated-focusable;
   @include layout-align-top;
 
-  background: linear-gradient(to top, $color-transparent, $color-background-bars);
+  background: linear-gradient(
+    to top,
+    $color-transparent,
+    $color-background-bars
+  );
   box-sizing: border-box;
-  padding: .5em 1em 1em;
+  padding: 0.5em 1em 1em;
   pointer-events: none;
 
   > .#{$prefix}-container-wrapper {
-    padding: .5em;
+    padding: 0.5em;
     pointer-events: none;
 
     .#{$prefix}-label-metadata {
@@ -35,5 +39,9 @@
       text-shadow: 0 0 5px $color-black;
       white-space: normal;
     }
+  }
+
+  &.#{$prefix}-ui-titlebar-small-screen {
+    z-index: 3;
   }
 }

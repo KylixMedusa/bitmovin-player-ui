@@ -1,17 +1,24 @@
-@import '../variables';
-@import '../mixins';
+@import "../variables";
+@import "../mixins";
 
 %ui-settings-panel {
   @extend %ui-container;
 
-  @include hidden-animated-with-additional-transitions($animation-duration,
+  @include hidden-animated-with-additional-transitions(
+    $animation-duration,
     (
-      height: (.35s, cubic-bezier(.4, 0, .2, 1)),
-      width: (.35s, cubic-bezier(.4, 0, .2, 1))
+      height: (
+        0.35s,
+        cubic-bezier(0.4, 0, 0.2, 1),
+      ),
+      width: (
+        0.35s,
+        cubic-bezier(0.4, 0, 0.2, 1),
+      ),
     )
   );
 
-  $background-color: transparentize($color-background, .15);
+  $background-color: transparentize($color-background, 0.15);
 
   background-color: $background-color;
   bottom: 5em;
@@ -21,13 +28,17 @@
   right: 2em;
 
   > .#{$prefix}-container-wrapper {
-    margin: .5em;
+    margin: 0.5em;
     overflow-y: auto;
 
     > * {
-      margin: 0 .5em;
+      margin: 0 0.5em;
     }
   }
+}
+
+.#{$prefix}-ui-settings-panel-small-screen {
+  z-index: 5;
 }
 
 .#{$prefix}-ui-settings-panel {

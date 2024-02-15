@@ -1,5 +1,5 @@
-@import '../variables';
-@import '../mixins';
+@import "../variables";
+@import "../mixins";
 
 .#{$prefix}-ui-controlbar {
   @extend %ui-container;
@@ -7,26 +7,30 @@
   @include hidden-animated-focusable;
   @include layout-align-bottom;
 
-  background: linear-gradient(to bottom, $color-transparent, $color-background-bars);
+  background: linear-gradient(
+    to bottom,
+    $color-transparent,
+    $color-background-bars
+  );
   box-sizing: border-box;
   line-height: 1em;
-  padding: 1em 1em .5em;
+  padding: 1em 1em 0.5em;
 
   .#{$prefix}-controlbar-top,
   .#{$prefix}-controlbar-bottom {
     > .#{$prefix}-container-wrapper {
       display: flex;
-      margin: .5em 0;
+      margin: 0.5em 0;
     }
   }
 
   .#{$prefix}-controlbar-top {
     .#{$prefix}-ui-label {
-      font-size: .9em;
+      font-size: 0.9em;
     }
 
     > .#{$prefix}-container-wrapper > * {
-      margin: 0 .5em;
+      margin: 0 0.5em;
     }
   }
 
@@ -34,12 +38,117 @@
     white-space: nowrap; // Required for iOS 8.2 to avoid wrapped controlbar due to wrong size calculation
 
     > .#{$prefix}-container-wrapper {
-
       .#{$prefix}-ui-volumeslider {
-        margin: auto .5em;
+        margin: auto 0.5em;
         width: 5em;
       }
     }
+  }
+
+  &.#{$prefix}-controlbar-playback-controls {
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1;
+
+    .#{$prefix}-ui-custom-playback-buttons {
+      display: flex;
+      align-items: center;
+      gap: 6em;
+      .#{$prefix}-ui-playbacktogglebutton {
+        width: 3em;
+        height: 3em;
+        background-size: 3.5em;
+      }
+
+      .ui-rewind-button,
+      .ui-forward-button {
+        background-color: transparent;
+        background-size: 1em;
+        border: 0;
+        -webkit-box-sizing: content-box;
+        box-sizing: content-box;
+        cursor: pointer;
+        font-size: 1em;
+        height: 1em;
+        min-width: 1em;
+        padding: 0.25em;
+        outline: 0;
+
+        position: relative;
+
+        &::before {
+          content: "+10 sec";
+          position: absolute;
+          width: max-content;
+          color: #fff;
+          opacity: 0;
+          transition: all 0.1s ease-in-out;
+
+          top: 50%;
+          left: 0;
+          transform: translate(-120%, -50%);
+        }
+
+        &::after {
+          content: "";
+          position: absolute;
+          height: 100%;
+          width: 100%;
+          background-origin: content-box;
+          background-position: center;
+          background-repeat: no-repeat;
+
+          transition: all 0.1s ease-in-out;
+
+          top: 0;
+          left: 0;
+        }
+      }
+
+      .ui-rewind-button {
+        &::after {
+          background: url("../../assets/skin-modern/images/rewind.svg");
+        }
+
+        &:active {
+          &::after {
+            transform: rotate(-60deg);
+          }
+          &::before {
+            opacity: 1;
+          }
+        }
+      }
+
+      .ui-forward-button {
+        &::after {
+          background: url("../../assets/skin-modern/images/forward.svg");
+        }
+
+        &::before {
+          left: 100%;
+          transform: translate(20%, -50%);
+        }
+
+        &:active {
+          &::after {
+            transform: rotate(60deg);
+          }
+
+          &::before {
+            opacity: 1;
+          }
+        }
+      }
+    }
+  }
+
+  &.#{$prefix}-controlbar-playback-seekbar {
+    z-index: 2;
   }
 }
 
@@ -50,7 +159,7 @@
     .#{$prefix}-controlbar-top,
     .#{$prefix}-controlbar-bottom {
       > .#{$prefix}-container-wrapper {
-        border-spacing: .5em 0;
+        border-spacing: 0.5em 0;
         display: table;
 
         > * {
